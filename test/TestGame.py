@@ -3,6 +3,7 @@ from unittest.mock import MagicMock, patch
 import builtins
 from Game1 import Game
 
+
 class TestGame(unittest.TestCase):
     def setUp(self):
         # Mock the built-in input function to control user inputs
@@ -32,7 +33,9 @@ class TestGame(unittest.TestCase):
             game.play_turn(current_player)
             # Check if game correctly cycles to the next player when a player scores over 100
             if current_player.score >= 100:
-                self.assertEqual(game.current_player_index, 0)  # Assuming the game should cycle back to the first player
+                self.assertEqual(
+                    game.current_player_index, 0
+                )  # Assuming the game should cycle back to the first player
 
     @patch("builtins.input")
     @patch("builtins.print")
@@ -45,18 +48,23 @@ class TestGame(unittest.TestCase):
 
         with patch.object(Game, "play_turn", autospec=True) as mock_play_turn:
             # Simulate turn behavior for automatic score increment
-            mock_play_turn.side_effect = lambda self, player: setattr(player, 'score', player.score + 5)
+            mock_play_turn.side_effect = lambda self, player: setattr(
+                player, "score", player.score + 5
+            )
             game.play_game()
 
         # Ensure game ends when a player's score reaches 100 or more
         self.assertTrue(any(player.score >= 100 for player in game.players))
         # Check output for winning message
         winning_player = next(player for player in game.players if player.score >= 100)
-        mock_print.assert_any_call(f"\n{winning_player.name} wins with a score of {winning_player.score}!")
+        mock_print.assert_any_call(
+            f"\n{winning_player.name} wins with a score of {winning_player.score}!"
+        )
 
         # Confirm high scores and histogram outputs
         mock_print.assert_any_call("\nHigh Scores:")
         mock_print.assert_any_call("\nDice Roll Histogram:")
+
 
 if __name__ == "__main__":
     unittest.main()

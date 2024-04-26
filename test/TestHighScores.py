@@ -3,6 +3,7 @@ import os
 import json
 from HighScores import HighScores
 
+
 class TestHighScores(unittest.TestCase):
     def setUp(self):
         # Setup a temporary file to simulate high score storage
@@ -32,7 +33,7 @@ class TestHighScores(unittest.TestCase):
             high_scores.scores, {"Player1": 100, "Player2": 90, "Player3": 95}
         )
         # Verify that the data was written to the file
-        with open(self.filename, 'r') as file:
+        with open(self.filename, "r") as file:
             data = json.load(file)
             self.assertEqual(data, {"Player1": 100, "Player2": 90, "Player3": 95})
 
@@ -42,9 +43,10 @@ class TestHighScores(unittest.TestCase):
         high_scores.save_score("Player1", 110)
         self.assertEqual(high_scores.scores, {"Player1": 110, "Player2": 90})
         # Verify that the data was updated in the file
-        with open(self.filename, 'r') as file:
+        with open(self.filename, "r") as file:
             data = json.load(file)
             self.assertEqual(data, {"Player1": 110, "Player2": 90})
+
 
 if __name__ == "__main__":
     unittest.main()

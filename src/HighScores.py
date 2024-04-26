@@ -1,6 +1,7 @@
 import json
 import os
 
+
 class HighScores:
     def __init__(self, filename="highscores11.json"):
         # Initialize the HighScores object with a file name for storing high scores.

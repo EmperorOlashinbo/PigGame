@@ -5,6 +5,7 @@ from Histogram import Histogram
 from Intelligence import Intelligence
 from HighScores import HighScores
 
+
 class Game:
     def __init__(self):
         # Initialize components of the game, including dice, players, and high scores.
@@ -13,21 +14,34 @@ class Game:
         self.current_player_index = 0  # Track whose turn it is to play.
         self.high_scores = HighScores()  # High scores manager.
         self.histogram = Histogram()  # Record and display roll statistics.
-        self.ai = None  # AI intelligence, initialized only if playing against the computer.
+        self.ai = (
+            None  # AI intelligence, initialized only if playing against the computer.
+        )
 
     def setup_players(self):
         # Setup the game players based on user input for number of players and names.
         players = []
-        number_of_players = int(input("Enter the number of human players (1 for single player, 2 or more for multiplayer): "))
+        number_of_players = int(
+            input(
+                "Enter the number of human players (1 for single player, 2 or more for multiplayer): "
+            )
+        )
         for i in range(number_of_players):
             name = input(f"Enter player {i + 1} name: ")
             players.append(Player(name))
 
         # If there is only one human player, ask if they want to play against the computer.
         if number_of_players == 1:
-            include_computer = input("Do you want to include a computer opponent? (y/n): ").strip().lower() == "y"
+            include_computer = (
+                input("Do you want to include a computer opponent? (y/n): ")
+                .strip()
+                .lower()
+                == "y"
+            )
             if include_computer:
-                ai_difficulty = input("Select AI difficulty (easy, medium, hard): ").strip().lower()
+                ai_difficulty = (
+                    input("Select AI difficulty (easy, medium, hard): ").strip().lower()
+                )
                 self.ai = Intelligence(level=ai_difficulty)
                 players.append(Player("Computer"))
 
@@ -49,7 +63,9 @@ class Game:
                 break
             else:
                 turn_score += roll
-                print(f"Turn score: {turn_score}, Total score if held: {player.score + turn_score}")
+                print(
+                    f"Turn score: {turn_score}, Total score if held: {player.score + turn_score}"
+                )
 
                 if player.name == "Computer" and self.ai:
                     if not self.ai.should_roll_again(player.score, turn_score):
@@ -57,7 +73,7 @@ class Game:
                         break
                 else:
                     choice = input("Roll again? (y/n): ").strip().lower()
-                    if choice != 'y':
+                    if choice != "y":
                         break
 
         player.update_score(turn_score)
@@ -67,21 +83,28 @@ class Game:
         print("Welcome to the Pig Dice Game!")
         while True:
             current_player = self.players[self.current_player_index]
-            print(f"\n{current_player.name}'s turn. Current score: {current_player.score}")
+            print(
+                f"\n{current_player.name}'s turn. Current score: {current_player.score}"
+            )
             self.play_turn(current_player)
 
             if current_player.score >= 100:
-                print(f"\n{current_player.name} wins with a score of {current_player.score}!")
+                print(
+                    f"\n{current_player.name} wins with a score of {current_player.score}!"
+                )
                 self.high_scores.save_score(current_player.name, current_player.score)
                 break
 
-            self.current_player_index = (self.current_player_index + 1) % len(self.players)
+            self.current_player_index = (self.current_player_index + 1) % len(
+                self.players
+            )
 
         print("\nHigh Scores:")
         self.high_scores.display()
 
         print("\nDice Roll Histogram:")
         self.histogram.display()
+
 
 if __name__ == "__main__":
     game = Game()

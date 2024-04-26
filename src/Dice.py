@@ -1,5 +1,6 @@
 import random
 
+
 class Dice:
     def roll(self):
         # Simulate a dice roll and return a random integer between 1 and 6, inclusive.

@@ -1,6 +1,7 @@
 import unittest
 from Player import Player
 
+
 class TestPlayer(unittest.TestCase):
     def setUp(self):
         # Initialize a player with a name for each test
@@ -15,7 +16,9 @@ class TestPlayer(unittest.TestCase):
         # Test updating the player's score with a negative value to simulate score penalties
         self.player.score = 10  # Initial score
         self.player.update_score(-3)
-        self.assertEqual(self.player.score, 7, "Score should decrease by 3 due to penalty")
+        self.assertEqual(
+            self.player.score, 7, "Score should decrease by 3 due to penalty"
+        )
 
     def test_update_score_multiple_times(self):
         # Test updating the score multiple times and verify final score
@@ -23,7 +26,9 @@ class TestPlayer(unittest.TestCase):
         final_score = sum(updates)
         for update in updates:
             self.player.update_score(update)
-        self.assertEqual(self.player.score, final_score, "Final score should reflect all updates")
+        self.assertEqual(
+            self.player.score, final_score, "Final score should reflect all updates"
+        )
 
     def test_reset_score(self):
         # Ensure the player's score is reset to 0
@@ -37,7 +42,10 @@ class TestPlayer(unittest.TestCase):
         for update in updates:
             self.player.update_score(update)
         self.player.reset_score()
-        self.assertEqual(self.player.score, 0, "Score should reset to 0 after multiple updates")
+        self.assertEqual(
+            self.player.score, 0, "Score should reset to 0 after multiple updates"
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

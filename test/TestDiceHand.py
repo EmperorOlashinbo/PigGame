@@ -1,6 +1,7 @@
 import unittest
 from DiceHand import DiceHand
 
+
 class TestDiceHand(unittest.TestCase):
     def setUp(self):
         # Create a fresh instance of DiceHand for each test
@@ -10,7 +11,9 @@ class TestDiceHand(unittest.TestCase):
         # Test that dice rolls are added correctly and total is computed accurately
         self.dice_hand.add_roll(4)
         self.dice_hand.add_roll(3)
-        self.assertEqual(self.dice_hand.total(), 7, "Total should be the sum of all dice rolls")
+        self.assertEqual(
+            self.dice_hand.total(), 7, "Total should be the sum of all dice rolls"
+        )
 
     def test_multiple_adds_and_total_roll(self):
         # Test adding multiple rolls and verify the total
@@ -18,7 +21,11 @@ class TestDiceHand(unittest.TestCase):
         total_expected = sum(rolls)
         for roll in rolls:
             self.dice_hand.add_roll(roll)
-        self.assertEqual(self.dice_hand.total(), total_expected, "Total should correctly sum multiple dice rolls")
+        self.assertEqual(
+            self.dice_hand.total(),
+            total_expected,
+            "Total should correctly sum multiple dice rolls",
+        )
 
     def test_reset(self):
         # Test that the dice hand can be reset to zero after adding some rolls
@@ -32,7 +39,12 @@ class TestDiceHand(unittest.TestCase):
         self.dice_hand.add_roll(3)
         self.dice_hand.reset()  # Reset the hand
         self.dice_hand.add_roll(6)  # Add new roll after reset
-        self.assertEqual(self.dice_hand.total(), 6, "Total should be equal to the new roll after a reset")
+        self.assertEqual(
+            self.dice_hand.total(),
+            6,
+            "Total should be equal to the new roll after a reset",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
