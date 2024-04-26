@@ -1,0 +1,13 @@
+pytest>=6.0
+pytest-cov
+flake8
+flake8-docstrings
+flake8-polyfill
+bandit
+black
+pylint
+Sphinx
+lint
+radon
+pdoc3
+sphinx-rtd-theme
