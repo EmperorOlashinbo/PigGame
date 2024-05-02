@@ -12,5 +12,5 @@ class DiceHand:
         return sum(self.rolls)
 
     def reset(self):
-        # Reset the list of dice rolls to an empty list, clearing all previous rolls.
+        # Reset the list of dice rolls to an empty list, clearing all the previous rolls.
         self.rolls = []
