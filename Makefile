@@ -1,4 +1,4 @@
-# Makefile for the Dice Game project
+# Makefile for the Pig Dice Game project
 
 # Variables
 VENV = venv
