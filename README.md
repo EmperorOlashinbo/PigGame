@@ -19,6 +19,7 @@ First, clone our project repository:
 git clone https://github.com/EmperorOlashinbo/PigGame.git
 
 cd PigGame
+cd src
 
 Then, create and activate a virtual environment:
 
