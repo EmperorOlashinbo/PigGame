@@ -133,5 +133,4 @@ dmypy.json
 Makefile/
 README.md/
 requirements.txt/
-coverage/
 .git/
