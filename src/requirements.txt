@@ -1,19 +1,12 @@
-# Code analysis
+pytest>=6.0
+pytest-cov
 flake8
 flake8-docstrings
 flake8-polyfill
-
-# metrics.pylint
-pylint
-
-
-# Code style
+bandit
 black
-
-# Documentation
-sphinx
-sphinx-rtd-theme # ReadTheDocs local build
-graphviz
-
-# Unit test and coverage
-coverage
+pylint
+Sphinx
+lint
+radon
+sphinx-rtd-theme
