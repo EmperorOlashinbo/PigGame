@@ -10,6 +10,10 @@ PYLINT = $(VENV)/Scripts/pylint
 BLACK = $(VENV)/Scripts/black
 SPHINX_BUILD = $(VENV)/Scripts/sphinx-build
 PYREVERSE = $(VENV)/Scripts/pyreverse
+RADON = $(VENV)/Scripts/radon
+BANDIT = $(VENV)/Scripts/bandit
+COHESION = $(VENV)/Scripts/cohesion
+
 
 # Default target
 all: install lint black test coverage doc uml
@@ -79,29 +83,30 @@ clean:
 # Calculate software metrics for your project.
 
 radon-cc:
-	@$(call MESSAGE,$@)
-	radon cc --show-complexity --average pig
+	@echo "Running Radon Cyclomatic Complexity..."
+	$(RADON) cc --show-complexity --average *.py
 
 radon-mi:
-	@$(call MESSAGE,$@)
-	radon mi --show pig
+	@echo "Running Radon Maintainability Index..."
+	$(RADON) mi --show *.py
 
 radon-raw:
-	@$(call MESSAGE,$@)
-	radon raw pig
+	@echo "Running Radon Raw Metrics..."
+	$(RADON) raw *.py
 
 radon-hal:
-	@$(call MESSAGE,$@)
-	radon hal pig
+	@echo "Running Radon Halstead Metrics..."
+	$(RADON) hal *.py
 
 cohesion:
-	@$(call MESSAGE,$@)
-	cohesion --directory pig
+	@echo "Running Cohesion..."
+	$(COHESION) -f Game1.py HighScores.py Intelligence.py Histogram.py Dice.py DiceHand.py Player.py
 
 metrics: radon-cc radon-mi radon-raw radon-hal cohesion
 
 bandit:
-	@$(call MESSAGE,$@)
-	bandit --recursive pig
+	@echo "Running Bandit..."
+	$(BANDIT) --recursive 
 
-.PHONY: all install lint black test coverage doc uml clean flake8 pylint
+
+.PHONY: all install lint black test coverage doc uml clean flake8 pylint bandit metrics
