@@ -11,3 +11,5 @@ lint
 radon
 pdoc3
 sphinx-rtd-theme
+cohesion
+metrics
